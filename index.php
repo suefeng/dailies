@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('feed/FeedForAll_XMLParser.inc.php');
 //
 // dailies.php RSS feed to HTML webpage script
@@ -15,18 +15,16 @@ $useFopenURL = 0;
 // If XLMFILE is passed as part of the URL, XMLFILE=, then it will be used
 // otherwise the the file below is used.
 //$XMLfilename = "http://examlple.com/sample.xml";
-$XMLfilenames[0] = "http://blog.flutyocarina.net/feed/";
 $XMLfilenames[1] = "http://ethetica.net/feed/";
 $XMLfilenames[2] = "http://shawnadderly.wordpress.com/feed/";
 $XMLfilenames[3] = "http://blog.oftreesandhues.com/feed/";
 $XMLfilenames[4] = "http://www.gr8sh.com/rss";
-$XMLfilenames[5] = "http://sky-song.org/feed/";
 
 //
 // If TEMPLATE is passed as part of the URL. TEMPLATE=, then it will be used
 // otherwise the the file below is used.
 //$TEMPLATEfilename = "http://examlple.com/sample-template.html";
-$TEMPLATEfilename = "http://suefeng.net/demos/dailies/feed/rss2html.php";
+$TEMPLATEfilename = "http://suefeng.com/demos/dailies/feed/rss2html.php";
 
 //
 // Since some feeds may have titles or descriptins in the feed or items that
@@ -88,10 +86,10 @@ $allowedFeedExtensions = Array(".xml", ".rss");
 $destinationEncoding = "UTF-8";
 
 //
-// Missing Encoding Default:  Some feeds do not specify the character set 
+// Missing Encoding Default:  Some feeds do not specify the character set
 // they are encoded in.  The XML specification states that if there is no
 // encoding specified the XML file, all RSS feeds are XML, must be encoded
-// in UTF-8, but experience has show differently.  This specifies the 
+// in UTF-8, but experience has show differently.  This specifies the
 // encoding that will be used for feeds that don't specify the encoding.
 //$missingEncodingDefault = "UTF-8";
 $missingEncodingDefault = "ISO-8859-1";
@@ -291,13 +289,13 @@ if (function_exists("FeedForAll_dailies_CreateUniqueLink") === FALSE) {
   Function FeedForAll_dailies_CreateUniqueLink($title, $description, $link, $guid, $XMLfilename, $itemTemplate) {
     GLOBAL $TEMPLATEfilename;
     $match = Array();
-    
+
     while (preg_match("/~~~ItemUniqueLinkWithTemplate=.*~~~/", $itemTemplate, $match) !== FALSE) {
       if ((count($match) == 0) || ($match[0] == "")) {
         // All done
         return $itemTemplate;
       }
-      
+
       $replace = "http://$_SERVER[SERVER_NAME]$_SERVER[SCRIPT_NAME]?XMLFILE=".FeedForAll_dailies_encodeURL($XMLfilename)."&amp;TEMPLATE=".FeedForAll_dailies_encodeURL($TEMPLATEfilename);
       $itemTemplate = FeedForAll_dailies_str_replace($match[0], $replace, $itemTemplate);
     }
@@ -322,7 +320,7 @@ if (function_exists("FeedForAll_dailies_UseUniqueLink") === FALSE) {
 if (function_exists("FeedForAll_dailies_EscapeLink") === FALSE) {
   Function FeedForAll_dailies_EscapeLink($link) {
     GLOBAL $escapeAmpInLinks;
-    
+
     if ((strstr($link, "://") !== FALSE) && $escapeAmpInLinks) {
       // In HTML a link with an & must be converted to &amp;
       // And for here without :// it is not a link, since relative
@@ -367,7 +365,7 @@ if (!isset($_REQUEST["buildURL"])) {
     $NoFutureItems = TRUE;
   }
 
-  
+
   if (isset($_REQUEST["XMLFILE"])) {
     if (stristr($_REQUEST["XMLFILE"], "file"."://")) {
       // Not allowed
@@ -572,7 +570,7 @@ if (!isset($_REQUEST["buildURL"])) {
       if (isset($debugLevel) && ($debugLevel >= 3)) {
         echo "DIAG: adding to items, count=".count($rss_parser->Items)."<br>\n";
       }
-      
+
       // The the maximum items requested
       if (strstr($template, "~~~FeedMaxItems=")) {
         // Limit the maximun number of items displayed

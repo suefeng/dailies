@@ -1,5 +1,5 @@
 body { margin: 0; padding: 0;  font: 14px Arial; }
-#content { width: 650px; margin: 0 auto; }
+#content { width: 650px; margin: 0 auto 100px; }
 a { color: #6699ff; text-decoration: none; }
 .title { margin: 20px 0 0 0; display: block; font-size: 24px; }
 .description { margin: 0 20px; }
